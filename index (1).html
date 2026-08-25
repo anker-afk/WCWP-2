@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Protein Pipeline</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0a0a0a;
+            --surface: #151515;
+            --card: #1c1c1c;
+            --accent: #00e676;
+            --danger: #ff5252;
+            --text: #eaeaea;
+            --muted: #777;
+            --border: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* ── NAVIGATION ── */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav .logo {
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        nav ul li a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover { color: var(--accent); }
+
+        /* ── SECTIONS ── */
+        section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 6rem 2rem 4rem;
+        }
+
+        .hero {
+            max-width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(180deg, #0a0a0a 0%, #111 100%);
+        }
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 span { color: var(--accent); }
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--muted);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+        .hero .scroll-cue {
+            font-size: 0.8rem;
+            color: var(--muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 3rem;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            color: var(--text);
+        }
+        h2 span { color: var(--accent); }
+
+        .section-text {
+            font-size: 1.05rem;
+            color: #ccc;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-box {
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .highlight-box .label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        .highlight-box .value {
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+        .highlight-box .context {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-top: 0.5rem;
+        }
+
+        .vs-box {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 1.5rem;
+            align-items: center;
+            margin: 2rem 0;
+        }
+        .vs-side {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .vs-side .number {
+            font-size: 2.5rem;
+            font-weight: 900;
+        }
+        .vs-side .desc {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-top: 0.5rem;
+        }
+        .vs-divider {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--muted);
+        }
+        .science-num { color: var(--accent); }
+        .insta-num { color: var(--danger); }
+
+        .source-tag {
+            font-size: 0.75rem;
+            color: var(--muted);
+            font-style: italic;
+            margin-top: 1rem;
+        }
+
+        /* ── DIVIDER ── */
+        .divider {
+            max-width: 800px;
+            margin: 0 auto;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ── SIMULATOR ── */
+        .simulator-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 6rem 2rem 4rem;
+        }
+
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .stack-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: border-color 0.3s, transform 0.2s;
+            text-align: center;
+        }
+        .stack-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        .stack-card.selected {
+            border-color: var(--accent);
+            background: #1a2e1a;
+        }
+        .stack-card .emoji { font-size: 2rem; margin-bottom: 0.5rem; }
+        .stack-card .name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+        }
+        .stack-card .price {
+            color: var(--accent);
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+        .stack-card .per {
+            font-size: 0.7rem;
+            color: var(--muted);
+        }
+
+        .total-bar {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .total-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--muted);
+        }
+        .total-amount {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--danger);
+        }
+
+        .compare-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            margin-top: 1rem;
+        }
+        .compare-btn:hover { opacity: 0.85; }
+        .compare-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .comparison-result {
+            display: none;
+            margin-top: 2rem;
+        }
+        .comparison-result.show { display: block; }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .comp-column {
+            background: var(--surface);
+            border-radius: 8px;
+            padding: 2rem;
+        }
+        .comp-column h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+        .comp-column.supps h4 { color: var(--danger); }
+        .comp-column.whole h4 { color: var(--accent); }
+        .comp-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+        .comp-item:last-child { border-bottom: none; }
+        .comp-total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 1rem;
+            margin-top: 0.5rem;
+            border-top: 2px solid var(--border);
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+        .savings-callout {
+            background: #1a2e1a;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        .savings-callout .amount {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--accent);
+        }
+        .savings-callout .desc {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-top: 0.3rem;
+        }
+
+        /* ── STAKES ── */
+        .warning-card {
+            background: #1c1212;
+            border: 1px solid #3a1a1a;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+        }
+        .warning-card .warning-title {
+            color: var(--danger);
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ── CLOSING ── */
+        .closing {
+            text-align: center;
+            padding: 6rem 2rem 8rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .closing p {
+            font-size: 1.3rem;
+            color: #aaa;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+        footer a { color: var(--accent); text-decoration: none; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 700px) {
+            .hero h1 { font-size: 2.5rem; }
+            .vs-box { grid-template-columns: 1fr; }
+            .vs-divider { text-align: center; }
+            .comparison-grid { grid-template-columns: 1fr; }
+            .stack-grid { grid-template-columns: 1fr 1fr; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+    <div class="logo">The Protein Pipeline</div>
+    <ul>
+        <li><a href="#the-number">The Number</a></li>
+        <li><a href="#the-pipeline">The Pipeline</a></li>
+        <li><a href="#the-stakes">The Stakes</a></li>
+        <li><a href="#build-your-stack">Simulator</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>You Don't Need<br><span>That Much Protein</span></h1>
+    <p>A $114 billion industry disagrees. Here's what the science actually says, who profits from the confusion, and what it's costing you.</p>
+    <div class="scroll-cue">↓ Scroll to see the tension ↓</div>
+</div>
+
+<!-- SECTION 1: THE NUMBER -->
+<section id="the-number">
+    <h2>The <span>Number</span></h2>
+
+    <p class="section-text">Open Instagram. Search "protein." You'll find creators telling you to eat 1 gram per pound of bodyweight. For a 150-pound person, that's 150 grams a day. It sounds specific. It sounds scientific. It has become the default advice across fitness social media.</p>
+
+    <p class="section-text">Here's what the research actually says.</p>
+
+    <div class="vs-box">
+        <div class="vs-side">
+            <div class="number science-num">54g</div>
+            <div class="desc">What science recommends<br>for a 150lb healthy adult<br>(0.8g per kg)</div>
+        </div>
+        <div class="vs-divider">vs</div>
+        <div class="vs-side">
+            <div class="number insta-num">150g</div>
+            <div class="desc">What Instagram says<br>for the same person<br>(1g per lb)</div>
+        </div>
+    </div>
+
+    <p class="section-text">The Recommended Dietary Allowance of 0.8 grams per kilogram of body weight per day is the scientifically established baseline for healthy adults. Higher intake (1.2 to 1.6g/kg) can benefit people losing weight or older adults preserving muscle. But intake above 2.0g/kg shows little additional benefit and can strain the kidneys.</p>
+
+    <div class="highlight-box">
+        <div class="label">What the science says</div>
+        <div class="value">30g per meal</div>
+        <div class="context">That's the maximum amount your muscles can use for repair and growth in a single sitting. Eating 60g in one meal doesn't double the benefit. A chicken breast, a cup of Greek yogurt with nuts, or a can of tuna each get you there.</div>
+    </div>
+
+    <p class="source-tag">Sources: ScienceInsights, "How Much Protein Does Your Body Actually Need?" (2026); CBS News / Sara Moniuszko (2025)</p>
+
+    <p class="section-text">So where did 150 grams come from? Not from a lab. From a feed.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECTION 2: THE PIPELINE -->
+<section id="the-pipeline">
+    <h2>The <span>Pipeline</span></h2>
+
+    <p class="section-text">Protein is now a $114 billion industry. The number of high-protein shakes and drinks on the market rose 122% between 2020 and 2024. Chains like Starbucks and Dutch Bros have added protein options. PepsiCo's CEO told investors that "consumers are adopting protein solutions in the diet at a pace that was not the case a few years back."</p>
+
+    <p class="section-text">The pipeline works in three steps.</p>
+
+    <div class="highlight-box">
+        <div class="label">Step 1: Create the need</div>
+        <div class="value" style="font-size: 1.2rem;">Fitness creators post "what I eat in a day" content showing 150 to 200 grams of protein, making it look like the standard. Viewers start thinking their 60 grams is not enough.</div>
+    </div>
+
+    <div class="highlight-box">
+        <div class="label">Step 2: Sell the solution</div>
+        <div class="value" style="font-size: 1.2rem;">The same creators partner with supplement brands. Discount codes, "link in bio," paid partnerships. The advice and the ad become indistinguishable.</div>
+    </div>
+
+    <div class="highlight-box">
+        <div class="label">Step 3: Repeat</div>
+        <div class="value" style="font-size: 1.2rem;">Users buy supplements, follow more creators, see more content telling them they need more protein. The cycle reinforces itself. The industry grows. The user's grocery bill grows with it.</div>
+    </div>
+
+    <p class="section-text">As Joan Salge Blake, a clinical professor of nutrition at Boston University, puts it: "It's always something. First it was calories: everyone was counting calories. Then it was low-carb, then no added sugar. There's always a trend."</p>
+
+    <p class="section-text">But this trend has a $114 billion industry behind it.</p>
+
+    <p class="source-tag">Sources: CBS News / Sara Moniuszko (2025); BU Today / Joan Salge Blake (2025); Cargill Protein Profile Report (2025)</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECTION 3: THE STAKES -->
+<section id="the-stakes">
+    <h2>The <span>Stakes</span></h2>
+
+    <p class="section-text">This is not just about money. It's about what happens to your body when one nutrient becomes an obsession and everything else gets displaced.</p>
+
+    <div class="warning-card">
+        <div class="warning-title">Lead in your powder</div>
+        <p class="section-text">Consumer Reports tested 23 protein powders and shakes. More than two-thirds contained unsafe levels of lead. These are products marketed as health food.</p>
+    </div>
+
+    <div class="warning-card">
+        <div class="warning-title">Scurvy in 2025</div>
+        <p class="section-text">Joan Salge Blake at BU describes cases of people on the carnivore diet, eating only meat for protein, developing scurvy because they dropped all fruits and vegetables. "Obviously that's extreme, but it does happen."</p>
+    </div>
+
+    <div class="warning-card">
+        <div class="warning-title">Supplements without blood work</div>
+        <p class="section-text">Creatine, pre-workout, collagen, multivitamins, BCAAs. Many gym-goers take five or more supplements daily without a single blood test to know what they actually need. Registered dietitian Helen Tieu says: "For people who are able to reach their protein targets from whole foods, protein powders and supplements are not necessary."</p>
+    </div>
+
+    <p class="section-text">The industry doesn't ask whether you need it. It asks whether you can be convinced you do.</p>
+
+    <p class="source-tag">Sources: Consumer Reports (2025); CBS News / Sara Moniuszko (2025); BU Today / Joan Salge Blake (2025)</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECTION 4: BUILD YOUR STACK SIMULATOR -->
+<div class="simulator-section" id="build-your-stack">
+    <h2>Build Your <span>Stack</span></h2>
+
+    <p class="section-text">Click the supplements below to build your monthly stack. Then compare what the same protein would cost from whole foods.</p>
+
+    <div class="stack-grid" id="supplement-grid"></div>
+
+    <div class="total-bar">
+        <div>
+            <div class="total-label">Your monthly supplement cost</div>
+        </div>
+        <div class="total-amount" id="total-cost">$0</div>
+    </div>
+
+    <button class="compare-btn" id="compare-btn" disabled onclick="showComparison()">
+        Compare to Whole Foods →
+    </button>
+
+    <div class="comparison-result" id="comparison-result">
+        <div class="comparison-grid">
+            <div class="comp-column supps">
+                <h4>Your Supplement Stack</h4>
+                <div id="supp-list"></div>
+                <div class="comp-total">
+                    <span>Monthly Total</span>
+                    <span id="supp-total-display"></span>
+                </div>
+            </div>
+            <div class="comp-column whole">
+                <h4>Whole Food Equivalent</h4>
+                <div id="whole-list"></div>
+                <div class="comp-total">
+                    <span>Monthly Total</span>
+                    <span id="whole-total-display"></span>
+                </div>
+            </div>
+        </div>
+        <div class="savings-callout" id="savings-callout">
+            <div class="amount" id="savings-amount"></div>
+            <div class="desc">saved per month by choosing whole foods</div>
+        </div>
+        <p class="section-text" style="margin-top: 2rem; text-align: center; color: var(--muted); font-size: 0.85rem;">Prices based on average US retail as of August 2026. Actual prices vary by location.</p>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CLOSING -->
+<div class="closing">
+    <p>Protein is essential. Nobody is arguing otherwise. The question is whether a $114 billion industry is helping you get enough of it, or manufacturing the feeling that you never have enough.</p>
+    <br>
+    <p>When the people telling you to eat more protein are the same people selling you the protein, whose health is actually being optimized?</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p>Saina Attam · WCWP 10B · Professor Ornelas · UC San Diego · 2026</p>
+    <p style="margin-top: 0.5rem;">Sources: <a href="https://scienceinsights.org/how-much-protein-does-your-body-actually-need/">ScienceInsights</a> · <a href="https://www.cbsnews.com/news/influencers-protein-powders-supplements-dietitians/">CBS News</a> · <a href="https://www.bu.edu/articles/2025/protein-trend-nutrition-expert-answers/">BU Today</a> · <a href="https://medium.com/virtua-health/protein-everything-the-high-protein-food-trend-on-social-media-04d6328f85e6">Virtua Health</a></p>
+</footer>
+
+<script>
+    // Supplement data
+    const supplements = [
+        { name: "Whey Protein", emoji: "🥤", price: 33, per: "2lb tub / month", protein: "48g/day (2 scoops)" },
+        { name: "Pre-Workout", emoji: "⚡", price: 38, per: "30 servings / month", protein: "0g (stimulant)" },
+        { name: "Creatine", emoji: "💪", price: 27, per: "30 servings / month", protein: "0g (performance)" },
+        { name: "Protein Bars", emoji: "🍫", price: 45, per: "30 bars / month", protein: "20g/bar" },
+        { name: "Collagen Powder", emoji: "✨", price: 32, per: "30 servings / month", protein: "10g/serving" },
+        { name: "BCAAs", emoji: "💊", price: 25, per: "30 servings / month", protein: "7g/serving" },
+        { name: "Mass Gainer", emoji: "🏋️", price: 48, per: "5lb bag / month", protein: "50g/serving" },
+        { name: "Multivitamin", emoji: "💉", price: 22, per: "30 capsules / month", protein: "0g (vitamins)" }
+    ];
+
+    // Whole food equivalents
+    const wholeFoods = [
+        { name: "Chicken breast (8lb)", price: 24, protein: "~50g/day" },
+        { name: "Eggs (5 dozen)", price: 15, protein: "~30g/day" },
+        { name: "Greek yogurt (8 tubs)", price: 32, protein: "~20g/day" },
+        { name: "Canned tuna (20 cans)", price: 20, protein: "~25g/day" },
+        { name: "Lentils (5lb bag)", price: 6, protein: "~18g/day" },
+        { name: "Milk (4 gallons)", price: 14, protein: "~16g/day" }
+    ];
+
+    let selected = new Set();
+
+    // Render supplement cards
+    const grid = document.getElementById('supplement-grid');
+    supplements.forEach((supp, i) => {
+        const card = document.createElement('div');
+        card.className = 'stack-card';
+        card.innerHTML = `
+            <div class="emoji">${supp.emoji}</div>
+            <div class="name">${supp.name}</div>
+            <div class="price">$${supp.price}</div>
+            <div class="per">${supp.per}</div>
+        `;
+        card.addEventListener('click', () => toggleSupp(i, card));
+        grid.appendChild(card);
+    });
+
+    function toggleSupp(index, card) {
+        if (selected.has(index)) {
+            selected.delete(index);
+            card.classList.remove('selected');
+        } else {
+            selected.add(index);
+            card.classList.add('selected');
+        }
+        updateTotal();
+        // Hide comparison if selections change
+        document.getElementById('comparison-result').classList.remove('show');
+    }
+
+    function updateTotal() {
+        let total = 0;
+        selected.forEach(i => total += supplements[i].price);
+        document.getElementById('total-cost').textContent = '$' + total;
+        document.getElementById('compare-btn').disabled = selected.size === 0;
+    }
+
+    function showComparison() {
+        if (selected.size === 0) return;
+
+        let suppTotal = 0;
+        const suppList = document.getElementById('supp-list');
+        suppList.innerHTML = '';
+        selected.forEach(i => {
+            suppTotal += supplements[i].price;
+            suppList.innerHTML += `<div class="comp-item"><span>${supplements[i].name}</span><span>$${supplements[i].price}/mo</span></div>`;
+        });
+        document.getElementById('supp-total-display').textContent = '$' + suppTotal + '/mo';
+
+        // Calculate proportional whole food cost
+        // Show a reasonable whole food alternative
+        let wholeTotal = 0;
+        const wholeList = document.getElementById('whole-list');
+        wholeList.innerHTML = '';
+
+        // Show whole foods that roughly match the protein from selected supplements
+        const relevantFoods = wholeFoods.slice(0, Math.max(3, Math.min(selected.size + 1, wholeFoods.length)));
+        relevantFoods.forEach(food => {
+            wholeTotal += food.price;
+            wholeList.innerHTML += `<div class="comp-item"><span>${food.name}</span><span>$${food.price}/mo</span></div>`;
+        });
+        document.getElementById('whole-total-display').textContent = '$' + wholeTotal + '/mo';
+
+        const savings = suppTotal - wholeTotal;
+        document.getElementById('savings-amount').textContent = savings > 0 ? '$' + savings : '$0';
+        document.getElementById('savings-callout').style.display = savings > 0 ? 'block' : 'none';
+
+        document.getElementById('comparison-result').classList.add('show');
+
+        // Scroll to comparison
+        document.getElementById('comparison-result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            const target = document.querySelector(link.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+</script>
+
+</body>
+</html>

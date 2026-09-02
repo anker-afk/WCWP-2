@@ -176,11 +176,14 @@
         .science-num { color: var(--accent); }
         .insta-num { color: var(--danger); }
 
-        .source-tag {
-            font-size: 0.75rem;
-            color: var(--muted);
-            font-style: italic;
-            margin-top: 1rem;
+        .section-text a, .highlight-box a, .warning-card a, .closing a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-decoration-color: #333;
+            transition: text-decoration-color 0.3s;
+        }
+        .section-text a:hover, .highlight-box a:hover, .warning-card a:hover, .closing a:hover {
+            text-decoration-color: var(--accent);
         }
 
         /* ── DIVIDER ── */
@@ -412,30 +415,33 @@
 <div class="hero">
     <h1>The Protein<br><span>Economy</span></h1>
     <p>You have probably saved a fitness reel before. You probably did not go back to it. But something about it followed you to the store.</p>
+    <p style="font-size: 0.95rem; color: #999; max-width: 550px; margin-top: 1rem;">This is for the person five years into their fitness journey who has never questioned their supplement stack. It is also for the person who has never trained a day in their life but somehow knows what creatine is. Both of you got your information from the same place.</p>
     <div class="scroll-cue">↓ Scroll ↓</div>
 </div>
 
+<!-- SECTION 1: THE FEED -->
 <section id="the-feed">
     <h2>The <span>Feed</span></h2>
 
-    <p class = "section-text"> It starts with one reel. A thirty-second clip of someone making a protein shake, or showing everything they eat in a day. You watch it. Maybe you watch it twice. Maybe you send it to a friend. Maybe you tap save, thinking you will come back to it later. You probably will not. But that does not matter, because Instagram already registered what you did.</p>
-    
-    <p class="section-text">In January 2025, Adam Mosseri, the head of Instagram, confirmed the three signals that matter most to the algorithm: watch time, DM shares, and likes per reach. But saves carry disproportionate weight. A post with 50 saves and 100 likes will typically outperform one with 500 likes and 5 saves, because the algorithm reads a save as a high-intent signal: this content had value. Every fitness creator who ends a caption with "save this for later" knows exactly what they are doing. They are not asking you to build a recipe folder. They are asking you to tell the algorithm that their content matters.</p>
+    <p class="section-text">It starts with one reel. A thirty-second clip of someone making a protein shake, or showing everything they eat in a day. You watch it. Maybe you watch it twice. Maybe you send it to a friend. Maybe you tap save, thinking you will come back to it later. You probably will not. But that does not matter, because Instagram already registered what you did.</p>
+
+    <p class="section-text">In January 2025, <a href="https://www.threads.net/@mosseri" target="_blank">Adam Mosseri, the head of Instagram</a>, confirmed the three signals that matter most to the algorithm: watch time, DM shares, and likes per reach. But saves carry disproportionate weight. A post with 50 saves and 100 likes will typically outperform one with 500 likes and 5 saves, because the algorithm reads a save as a high-intent signal: this content had value. Every fitness creator who ends a caption with "save this for later" knows exactly what they are doing. They are not asking you to build a recipe folder. They are asking you to tell the algorithm that their content matters.</p>
 
     <div class="highlight-box">
         <div class="label">What happens next</div>
-        <div class="value" style="font-size: 1.2rem;">Your Explore page adjusts. More protein content. More supplement recommendations. More creators hitting 150 grams a day. You did not search for any of this. The algorithm built it around one interaction, and a 2021 Wall Street Journal investigation found that recommendation algorithms can narrow a user's content to a specific niche in under two hours.</div>
+        <div class="value" style="font-size: 1.2rem;">Your Explore page adjusts. More protein content. More supplement recommendations. More creators hitting 150 grams a day. You did not search for any of this. The algorithm built it around one interaction, and a <a href="https://www.wsj.com/articles/tiktok-algorithm-video-investigation-11626877477" target="_blank">2021 Wall Street Journal investigation</a> found that recommendation algorithms can narrow a user's content to a specific niche in under two hours.</div>
     </div>
-    
+
     <p class="section-text">This is where it gets harder to see. You saved that reel three weeks ago. You never went back to it. But now you are standing in a store looking at a wall of protein powder, and one brand feels familiar. You cannot explain why. You just feel like you have seen it before.</p>
 
-    <p class="section-text">In 1968, psychologist Robert Zajonc documented what he called the mere exposure effect: the more you encounter something, the more you tend to prefer it, even when you do not consciously remember seeing it. Your brain reads familiarity as trust. It is not a decision you are making. It is a pattern your brain follows automatically. On social media, the effect compounds. The algorithm shows you the same types of content over and over, and that repetition builds preference for the products and creators attached to it. You do not choose to trust the brand. Your feed chose for you.</p>
+    <p class="section-text">In 1968, psychologist <a href="https://psycnet.apa.org/record/1968-12019-001" target="_blank">Robert Zajonc documented what he called the mere exposure effect</a>: the more you encounter something, the more you tend to prefer it, even when you do not consciously remember seeing it. Your brain reads familiarity as trust. It is not a decision you are making. It is a pattern your brain follows automatically. On social media, the effect compounds. The algorithm shows you the same types of content over and over, and that repetition builds preference for the products and creators attached to it. You do not choose to trust the brand. Your feed chose for you.</p>
 
-    <p class="source-tag">Sources: Adam Mosseri, Instagram head, January 2025; Wall Street Journal, "Inside TikTok's Highly Secretive Algorithm" (2021); Zajonc, R., "Attitudinal Effects of Mere Exposure," Journal of Personality and Social Psychology (1968)</p>
+
 </section>
-<div class = "divider"></div>
-    
-<!-- SECTION 1: THE NUMBER -->
+
+<div class="divider"></div>
+
+<!-- SECTION 2: THE NUMBER -->
 <section id="the-number">
     <h2>The <span>Number</span></h2>
 
@@ -448,38 +454,41 @@
         <div class="value">54g/day</div>
         <div class="context">0.8g per kg of body weight. This is the Recommended Dietary Allowance: the minimum to prevent deficiency, not the optimal amount for everyone.</div>
     </div>
-    
+
     <div class="highlight-box">
         <div class="label">Active adult training regularly</div>
         <div class="value">95–136g/day</div>
-        <div class="context">1.4 to 2.0g per kg of body weight, recommended by the International Society of Sports Nutrition for people who exercise consistently. This range also supports weight loss by preserving muscle and increasing satiety.</div>
+        <div class="context">1.4 to 2.0g per kg of body weight, recommended by the <a href="https://link.springer.com/article/10.1186/s12970-017-0173-z" target="_blank">International Society of Sports Nutrition</a> for people who exercise consistently. This range also supports weight loss by preserving muscle and increasing satiety.</div>
     </div>
-    
+
     <div class="highlight-box">
         <div class="label">What Instagram says</div>
         <div class="value" style="color: var(--danger);">150g+/day</div>
-        <div class="context">1g per pound of bodyweight. This overshoots even the athletic recommendation. The ISSN explicitly distinguishes evidence-based ranges from social media targets like 2.2g/kg, which exceed the needs of most athletes.</div>
+        <div class="context">1g per pound of bodyweight. This overshoots even the athletic recommendation. The <a href="https://link.springer.com/article/10.1186/s12970-017-0173-z" target="_blank">ISSN</a> explicitly distinguishes evidence-based ranges from social media targets like 2.2g/kg, which exceed the needs of most athletes.</div>
     </div>
 
-    <p class="section-text">The gap between the science and the feed is real, but it is not as simple as "Instagram is wrong." For someone training five days a week or trying to lose weight while preserving muscle, eating more protein than the RDA makes sense. Protein is the most satiating macronutrient: it keeps you full longer, and your body burns more energy digesting it than carbs or fat. That part is not a myth. The question is who needs 150 grams, and how many people chasing that number actually train hard enough for it to matter.</p>
+    <p class="section-text">The gap between the science and the feed is real, but it is not as simple as "Instagram is wrong." For someone training five days a week or trying to lose weight while preserving muscle, <a href="https://www.uclahealth.org/news/article/how-much-protein-do-you-really-need" target="_blank">eating more protein than the RDA makes sense</a>. Protein is the most satiating macronutrient: it keeps you full longer, and your body burns more energy digesting it than carbs or fat. That part is not a myth. The question is who needs 150 grams, and how many people chasing that number actually train hard enough for it to matter.</p>
 
     <p class="section-text">And there is a cost to overshooting. Two people who both weigh 150 pounds can have very different protein needs depending on their body composition, age, activity level, and health. When we eat more protein than our bodies can use, the kidneys have to work harder to remove the waste products. For healthy adults, that is usually manageable. But the American Kidney Fund warns that supplementing protein without knowing your actual needs can be harmful, especially for people with undiagnosed or early-stage kidney disease who may not have any obvious symptoms.</p>
+
     <div class="highlight-box">
         <div class="label">What the science says</div>
         <div class="value">30g per meal</div>
-        <div class="context">That's the maximum amount your muscles can use for repair and growth in a single sitting. Eating 60g in one meal doesn't double the benefit. A chicken breast, a cup of Greek yogurt with nuts, or a can of tuna each get you there.</div>
+        <div class="context">That is the maximum amount your muscles can use for repair and growth in a single sitting. Eating 60g in one meal does not double the benefit. A chicken breast, a cup of Greek yogurt with nuts, or a can of tuna each get you there.</div>
     </div>
 
-    <p class="source-tag">Sources: UCLA Health / Yasi Ansari, RDN (2025); International Society of Sports Nutrition, Position Stand on Protein and Exercise (2017); American Kidney Fund, "Protein Supplements and Kidney Health" (2025); Frontiers in Nutrition, Protein Supplementation Meta-Analysis (2025)</p>
-    <p class="section-text">The science supports a range. Your feed gave you one number. And it gave that same number to everyone: the person training six days a week, the person who walks twice a week, and the person who does not exercise at all. The algorithm does not adjust the recommendation based on who is watching. It adjusts based on what keeps you watching.</p></section>
+    <p class="section-text">The science supports a range. Your feed gave you one number. And it gave that same number to everyone: the person training six days a week, the person who walks twice a week, and the person who does not exercise at all. The algorithm does not adjust the recommendation based on who is watching. It adjusts based on what keeps you watching.</p>
+
+
+</section>
 
 <div class="divider"></div>
 
-<!-- SECTION 2: THE PIPELINE -->
+<!-- SECTION 3: THE PIPELINE -->
 <section id="the-pipeline">
     <h2>The <span>Pipeline</span></h2>
 
-    <p class="section-text">Protein is now a $114 billion industry. The number of high-protein shakes and drinks on the market rose 122% between 2020 and 2024. PepsiCo's CEO told investors that consumers are adopting protein solutions at a pace that was not the case a few years back. Fitness influencer marketing alone is projected to reach $1.7 billion, and supplement brands are the single biggest spenders in that space.</p>
+    <p class="section-text">Protein is now a <a href="https://www.cbsnews.com/news/influencers-protein-powders-supplements-dietitians/" target="_blank">$114 billion industry</a>. The number of high-protein shakes and drinks on the market rose 122% between 2020 and 2024. PepsiCo's CEO told investors that consumers are adopting protein solutions at a pace that was not the case a few years back. Fitness influencer marketing alone is projected to reach $1.7 billion, and supplement brands are the single biggest spenders in that space.</p>
 
     <p class="section-text">But calling every creator in this space a salesperson would be dishonest. The people in your feed fall into at least three categories, and the problem is that all three look exactly the same when you are scrolling.</p>
 
@@ -498,16 +507,16 @@
         <div class="value" style="font-size: 1.2rem;">A creator who knows exactly what they are doing when they say "most people are protein deficient" to an audience that includes people who do not train at all. The content is designed to create a problem and then sell the solution. The fear is the product. The supplement is the checkout page.</div>
     </div>
 
-    <p class="section-text">Here is what all three have in common: a discount code in the bio, a "save this for later" in the caption, and an algorithm that does not distinguish between education and advertisement. A systematic review published in BMC Public Health found that access to fitspiration content improved attitudes toward exercise and diet in the majority of participants. The same body of research found a significant correlation between that same content and disordered eating behaviors. The content that motivates you and the content that distorts your relationship with food can be the same post.</p>
+    <p class="section-text">Here is what all three have in common: a discount code in the bio, a "save this for later" in the caption, and an algorithm that does not distinguish between education and advertisement. A <a href="https://link.springer.com/article/10.1186/s12966-021-01138-3" target="_blank">systematic review published in the International Journal of Behavioral Nutrition and Physical Activity</a> found that access to fitspiration content improved attitudes toward exercise and diet in the majority of participants. The same body of research found a significant correlation between that same content and disordered eating behaviors. The content that motivates you and the content that distorts your relationship with food can be the same post.</p>
 
     <p class="section-text">The pipeline works because it does not need every creator to be dishonest. It just needs the honest ones and the dishonest ones to be indistinguishable in a feed.</p>
 
-    <p class="source-tag">Sources: CBS News / Sara Moniuszko (2025); Cargill Protein Profile Report (2025); BMC Public Health, "Effect of social media interventions on physical activity and dietary behaviours" (2021); Influencer Marketing Hub (2025)</p>
+
 </section>
 
 <div class="divider"></div>
 
-<!-- SECTION 3: THE GAP -->
+<!-- SECTION 4: THE GAP -->
 <section id="the-gap">
     <h2>The <span>Gap</span></h2>
 
@@ -525,24 +534,24 @@
         </div>
     </div>
 
-    <p class="section-text">That gap is not an accident. It is the distance between what people's bodies need and what their information environment told them they need. As Dr. John Seres at Columbia University puts it: "Most people will never have any reason to need a supplement. Period."</p>
+    <p class="section-text">That gap is not an accident. It is the distance between what people's bodies need and what their information environment told them they need. As <a href="https://www.cuimc.columbia.edu/news/what-supplements-do-you-need-probably-none" target="_blank">Dr. David Seres at Columbia University</a> puts it: most people will never have any reason to need a supplement. Period.</p>
 
-    <p class="section-text">But this is where the convenience argument deserves an honest hearing. For someone training consistently who struggles to hit 1.4 to 2.0 grams per kilogram from meals alone, a protein shake after the gym is a practical choice. Creatine is one of the most researched supplements in sports science: the International Society of Sports Nutrition calls it the most effective ergogenic nutritional supplement currently available to athletes, and long-term use at recommended doses has been found safe in studies lasting up to five years. Some supplements genuinely work for some people.</p>
+    <p class="section-text">But this is where the convenience argument deserves an honest hearing. For someone training consistently who struggles to hit 1.4 to 2.0 grams per kilogram from meals alone, a protein shake after the gym is a practical choice. Creatine is one of the most researched supplements in sports science: the <a href="https://link.springer.com/article/10.1186/s12970-017-0173-z" target="_blank">International Society of Sports Nutrition</a> calls it the most effective ergogenic nutritional supplement currently available to athletes, and long-term use at recommended doses has been found safe in studies lasting up to five years. Some supplements genuinely work for some people.</p>
 
     <p class="section-text">The question is not whether supplements can be useful. It is how you arrived at the decision to buy them. Did you get bloodwork? Did a doctor or dietitian tell you that you had a deficiency? Did you research the difference between what your body needs and what a creator told you it needs? Or did your feed build an information environment where buying protein powder felt like the obvious next step, long before you asked whether you needed it?</p>
 
-    <p class="section-text">Fitness content on social media has gotten more people moving than most public health campaigns ever have. Research shows that fitness social media use positively predicts exercise behavior, and that motivation and exercise intention serve as real mediators in that relationship. The content works. People exercise more because of it. But the same pipeline that gets someone off the couch also gets someone who has never trained into a supplement aisle, spending money on products their body has no use for, because the feed does not distinguish between a college athlete and a college student who walks to class.</p>
+    <p class="section-text">Fitness content on social media has gotten more people moving than most public health campaigns ever have. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12339431/" target="_blank">Research shows that fitness social media use positively predicts exercise behavior</a>, and that motivation and exercise intention serve as real mediators in that relationship. The content works. People exercise more because of it. But the same pipeline that gets someone off the couch also gets someone who has never trained into a supplement aisle, spending money on products their body has no use for, because the feed does not distinguish between a college athlete and a college student who walks to class.</p>
 
-    <p class="source-tag">Sources: Columbia University Irving Medical Center / Dr. John Seres (2024); ISSN Position Stand on Creatine (Kreider et al., 2017); Frontiers in Psychology, "Fitness social media use and exercise behavior" (2025); Harvard Health (2022)</p>
+
 </section>
 
 <div class="divider"></div>
 
-<!-- SECTION 3: THE STAKES -->
+<!-- SECTION 5: THE STAKES -->
 <section id="the-stakes">
     <h2>The <span>Stakes</span></h2>
 
-    <p class="section-text">This is not just about money. It's about what happens to your body when one nutrient becomes an obsession and everything else gets displaced.</p>
+    <p class="section-text">This is not just about money. It is about what happens to your body when one nutrient becomes an obsession and everything else gets displaced.</p>
 
     <div class="warning-card">
         <div class="warning-title">Lead in your powder</div>
@@ -551,21 +560,22 @@
 
     <div class="warning-card">
         <div class="warning-title">Scurvy in 2025</div>
-        <p class="section-text">Joan Salge Blake at BU describes cases of people on the carnivore diet, eating only meat for protein, developing scurvy because they dropped all fruits and vegetables. "Obviously that's extreme, but it does happen."</p>
+        <p class="section-text"><a href="https://www.bu.edu/articles/2025/protein-trend-nutrition-expert-answers/" target="_blank">Joan Salge Blake, a clinical professor of nutrition at Boston University</a>, describes cases of people on the carnivore diet, eating only meat for protein, developing scurvy because they dropped all fruits and vegetables. "Obviously that's extreme, but it does happen."</p>
     </div>
 
     <div class="warning-card">
         <div class="warning-title">Supplements without blood work</div>
-        <p class="section-text">Creatine, pre-workout, collagen, multivitamins, BCAAs. Many gym-goers take five or more supplements daily without a single blood test to know what they actually need. Registered dietitian Helen Tieu says: "For people who are able to reach their protein targets from whole foods, protein powders and supplements are not necessary."</p>
+        <p class="section-text">Creatine, pre-workout, collagen, multivitamins, BCAAs. Many gym-goers take five or more supplements daily without a single blood test to know what they actually need. Registered dietitian <a href="https://www.cbsnews.com/news/influencers-protein-powders-supplements-dietitians/" target="_blank">Helen Tieu says</a>: "For people who are able to reach their protein targets from whole foods, protein powders and supplements are not necessary."</p>
     </div>
 
     <p class="section-text">None of this means supplements are inherently dangerous. It means that taking them without knowing what your body actually needs is a gamble, and the information environment most people are making that decision in was not designed to help them make it well.</p>
-    <p class="source-tag">Sources: Consumer Reports (2025); CBS News / Sara Moniuszko (2025); BU Today / Joan Salge Blake (2025)</p>
+
+
 </section>
 
 <div class="divider"></div>
 
-<!-- SECTION 4: BUILD YOUR STACK SIMULATOR -->
+<!-- SECTION 6: BUILD YOUR STACK SIMULATOR -->
 <div class="simulator-section" id="build-your-stack">
     <h2>Build Your <span>Stack</span></h2>
 
@@ -618,13 +628,12 @@
     <p>You have probably saved a fitness reel. You have probably watched a creator show you what they eat in a day. You may have bought something because of it. None of that makes you wrong.</p>
     <br>
     <p>But the next time you reach for a product that feels familiar, ask yourself: where did I first learn I needed this? Was it a doctor, a dietitian, a blood test? Or was it a feed that learned what I watch, what I save, and what keeps me scrolling?</p>
-    
 </div>
 
 <!-- FOOTER -->
 <footer>
     <p>Saina Attam · WCWP 10B · Professor Ornelas · UC San Diego · 2026</p>
-    <p style="margin-top: 0.5rem;">Sources: <a href="https://scienceinsights.org/how-much-protein-does-your-body-actually-need/">ScienceInsights</a> · <a href="https://www.cbsnews.com/news/influencers-protein-powders-supplements-dietitians/">CBS News</a> · <a href="https://www.bu.edu/articles/2025/protein-trend-nutrition-expert-answers/">BU Today</a> · <a href="https://medium.com/virtua-health/protein-everything-the-high-protein-food-trend-on-social-media-04d6328f85e6">Virtua Health</a></p>
+    <p style="margin-top: 0.5rem;">Sources: <a href="https://www.uclahealth.org/news/article/how-much-protein-do-you-really-need" target="_blank">UCLA Health</a> · <a href="https://www.cbsnews.com/news/influencers-protein-powders-supplements-dietitians/" target="_blank">CBS News</a> · <a href="https://www.bu.edu/articles/2025/protein-trend-nutrition-expert-answers/" target="_blank">BU Today</a> · <a href="https://www.cuimc.columbia.edu/news/what-supplements-do-you-need-probably-none" target="_blank">Columbia CUIMC</a> · <a href="https://link.springer.com/article/10.1186/s12970-017-0173-z" target="_blank">ISSN / Kreider et al.</a> · <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12339431/" target="_blank">Frontiers in Psychology</a> · <a href="https://link.springer.com/article/10.1186/s12966-021-01138-3" target="_blank">IJBNPA Systematic Review</a></p>
 </footer>
 
 <script>
@@ -676,7 +685,6 @@
             card.classList.add('selected');
         }
         updateTotal();
-        // Hide comparison if selections change
         document.getElementById('comparison-result').classList.remove('show');
     }
 
@@ -699,13 +707,10 @@
         });
         document.getElementById('supp-total-display').textContent = '$' + suppTotal + '/mo';
 
-        // Calculate proportional whole food cost
-        // Show a reasonable whole food alternative
         let wholeTotal = 0;
         const wholeList = document.getElementById('whole-list');
         wholeList.innerHTML = '';
 
-        // Show whole foods that roughly match the protein from selected supplements
         const relevantFoods = wholeFoods.slice(0, Math.max(3, Math.min(selected.size + 1, wholeFoods.length)));
         relevantFoods.forEach(food => {
             wholeTotal += food.price;
@@ -718,8 +723,6 @@
         document.getElementById('savings-callout').style.display = savings > 0 ? 'block' : 'none';
 
         document.getElementById('comparison-result').classList.add('show');
-
-        // Scroll to comparison
         document.getElementById('comparison-result').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
